@@ -1,5 +1,11 @@
 ### Hi there 👋
 
+<div id="d">Something Different!</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+  $("#d").text("Great works!");
+</script>
+
 <!--
 **Edward-Roshan/Edward-Roshan** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
