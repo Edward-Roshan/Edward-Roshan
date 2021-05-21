@@ -1,7 +1,7 @@
 ---
-title: /
+title: "/"
+permalink: "/"
 layout: home
-permalink: /
 ---
 
 # Welcome

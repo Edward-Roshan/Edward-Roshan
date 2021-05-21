@@ -1,7 +1,7 @@
 ---
+title: "/about"
+permalink: "/about/"
 layout: page
-title: /about
-permalink: /about/
 ---
 
 # jekyll-theme-console

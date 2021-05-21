@@ -1,6 +1,6 @@
 ---
-layout: protected
 title: Secrets Page
+layout: protected
 password: HelloWorld
 ---
 

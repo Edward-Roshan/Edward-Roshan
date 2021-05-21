@@ -1,7 +1,7 @@
 ---
-title: /Tekdycaml
+title: "/Tekdycaml"
+permalink: "/Tekdycaml"
 layout: page
-permalink: /Tekdycaml
 ---
 
 # Peter principle
