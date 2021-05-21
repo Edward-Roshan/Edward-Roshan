@@ -17,7 +17,6 @@ description: Write an awesome description for your new site here. You can edit t
   results) and in your feed.xml site description.
 baseurl: ''
 url: 
-#theme: jekyll-theme-console
 markdown: kramdown
 remote_theme: b2a3e8/jekyll-theme-console
 plugins:
