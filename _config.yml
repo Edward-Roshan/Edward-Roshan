@@ -1,20 +1,8 @@
 ---
-title: Tekdycaml(anyone-developer)
+title: Tekdycaml (anyone-developer)
 timezone: Asia/Shanghai
-collections:
-  posts:
-    title: Posts
-    output: true
-  protected:
-    title: Protected
-    output: false
-  uploads:
-    title: Uploads
-    output: true
 email: zhang_nan_163@163.com
-description: Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for Google search
-  results) and in your feed.xml site description.
+description: 'Writing something useful. Not really true. Not really false. Leave something eternality.'
 baseurl: ''
 url: 
 markdown: kramdown
@@ -23,13 +11,9 @@ plugins:
 - jekyll-feed
 style: hacker
 header_pages:
-- index.md
-- edward.md
-- about.md
-- contact.md
+- home.md
+- gallery.md
+- feedback.md
+- whoami.md
 show_drafts: true
 footer: Walking in the dark to serve the light.
-jekyll_admin:
-  hidden_links:
-  - about
-  homepage: edward
