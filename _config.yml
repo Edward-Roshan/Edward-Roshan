@@ -14,6 +14,6 @@ header_pages:
 - home.md
 - gallery.md
 - feedback.md
-- whoami.md
+- me.md
 show_drafts: true
 footer: Walking in the dark to serve the light.
