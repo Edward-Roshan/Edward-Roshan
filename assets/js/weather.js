@@ -1,12 +1,13 @@
 let w = document.getElementById("weather");
+let newfetch = false;
 let weather = [];
 let counter = 0;
 const p = new Proxy(weather, {
     set: function(target, property, value, receiver) {
         target[property] = value;
-        if(property == 0 && counter == 0)
+        if(property == 0 && counter == 0 && newfetch)
         {
-            display(weather[counter]);
+            display(target[property]);
             startTimer();
         }
         return true;
@@ -25,15 +26,26 @@ const p = new Proxy(weather, {
     ls = JSON.parse(ls);
     if(ls)
     {
+        newfetch = false;
         const expired = ls.expire < (new Date()).getTime();
         const data = ls.data;
         if(data && !expired)
+        {
             data.forEach(c=>p.push(c));
+            display(weather[counter]);
+            startTimer();
+        }
         else
-            localStorage.setItem("weather", null);
+        {
+            localStorage.clear("weather");
+            localStorage.clear("weather-counter");
+        }
     }
     else
     {
+        localStorage.clear("weather");
+        localStorage.clear("weather-counter");
+        newfetch = true;
         function fetch(city)
         {
             const data = null;
@@ -77,6 +89,7 @@ function display(wc)
         setTimeout(function(){
             w.classList.remove('blink-in');
             counter++;
+            counter %= weather.length;
             localStorage.setItem("weather-counter", counter);
         }, 500);
     }, 500);

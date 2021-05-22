@@ -17,8 +17,8 @@ img {
     animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-delay: 0s;
-    animation-iteration-count: initial;
-    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-direction: normal;
     animation-play-state: running;
 }
 
@@ -27,7 +27,30 @@ img {
     animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-delay: 0s;
-    animation-iteration-count: initial;
-    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-direction: normal;
     animation-play-state: running;
+}
+
+.left-center {
+    text-align: center;
+}
+
+.center-right {
+    text-align: right;
+}
+
+.right-left {
+    text-align: left;
+}
+
+.radio-button {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    width:24px;
+    border: solid 1px;
+    border-radius: 10px;
+    padding: 0;
+    height: 12px;
+    line-height: 12px;
 }
