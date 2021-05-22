@@ -1,7 +1,7 @@
 ---
+layout: page
 title: "/me"
 permalink: "/me/"
-layout: page
 ---
 
 ### Hi there 👋
@@ -16,4 +16,4 @@ layout: page
 - ⚡ Fun fact: **[something new or efficiency]**
 - ⚙️ Working strategy: **[Plan -> Design -> Execute -> Summary]**
 
-![Edward-Roshan github stats](https://github-readme-stats.vercel.app/api?username=edward-roshan&show_icons=true&theme=dracula&count_private=true)
+![profile](https://github-readme-stats.vercel.app/api?username=edward-roshan&show_icons=true&theme=dracula&count_private=true)

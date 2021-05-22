@@ -1,5 +1,5 @@
 ---
-layout: o-page
+layout: page
 title: "/gallery"
 permalink: "/gallery"
 tag: anyone-developer-gallery gallery

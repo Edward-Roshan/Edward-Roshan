@@ -6,7 +6,6 @@ description: 'Writing something useful. Not really true. Not really false. Leave
 baseurl: ''
 url: 
 markdown: kramdown
-remote_theme: b2a3e8/jekyll-theme-console
 plugins:
 - jekyll-feed
 style: hacker

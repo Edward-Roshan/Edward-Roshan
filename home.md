@@ -1,9 +1,9 @@
 ---
-layout: o-home
-title: home
+layout: home
+title: /home
 permalink: "/"
 ---
 
 # Welcome
 
-Bla bla bla bla. Bla bla bla bla bla bla bla bla.
+Sailor on sail. Hopefully we can get far far away place.

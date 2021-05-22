@@ -1,5 +1,5 @@
 ---
-layout: o-page
+layout: page
 title: "/feedback"
 permalink: "/feedback"
 ---
