@@ -1,7 +1,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#161B22"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, maximum-scale=8.0, user-scalable=no" />
   <title>{{ page.title }}</title>
   {%- seo title=false -%}
 
@@ -24,7 +25,8 @@
   <link rel="stylesheet" type="text/css" href="{{ "/assets/animation.css" | relative_url }}">
   <link rel="stylesheet" type="text/css" href="{{ "/assets/stable-content.css" | relative_url }}">
   <link rel="stylesheet" type="text/css" href="{{ "/assets/override.css" | relative_url }}">
-
+  <link rel="apple-touch-icon" href="/favicon.ico">
+  
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
     {%- include google-analytics.html -%}
   {%- endif -%}
