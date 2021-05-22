@@ -1,5 +1,9 @@
 {%- assign page_paths = site.header_pages | default: default_paths -%}
 <header>
+  <div class="flex-warp">
+    <span id="clock"></span>
+    <span id="weather"></span>
+  </div>
   <div class="menu">
     <ul>
       {%- for path in page_paths -%}
@@ -10,4 +14,5 @@
       {%- endfor -%}
     </ul>
   </div>
+
 </header>

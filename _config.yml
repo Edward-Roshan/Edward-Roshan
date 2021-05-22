@@ -12,7 +12,7 @@ style: hacker
 header_pages:
 - home.md
 - gallery.md
-- feedback.md
 - me.md
+- feedback.md
 show_drafts: true
 footer: Walking in the dark to serve the light.

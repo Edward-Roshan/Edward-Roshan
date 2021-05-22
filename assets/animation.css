@@ -1,0 +1,12 @@
+@keyframes blink-out
+{
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@keyframes blink-in
+{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+

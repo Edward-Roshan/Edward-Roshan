@@ -5,3 +5,29 @@ img {
     width:100%;
     max-width:500px;
 }
+
+.flex-warp {
+    flex-flow: row wrap;
+    justify-content: space-between;
+    display: flex;
+}
+
+.blink-in {
+    animation-name: blink-in;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: initial;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+.blink-out {
+    animation-name: blink-out;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: initial;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
