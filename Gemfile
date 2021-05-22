@@ -18,8 +18,7 @@ gem "github-pages", group: :jekyll_plugins
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
-  #gem "jekyll-theme-console", '> 0'
-  #gem 'jekyll-admin', '~> 0.11.0'
+  gem 'jekyll-minifier', "~> 0.1.10"
   #gem 'jekyll-manager', '~> 0.1.1'
 end
 

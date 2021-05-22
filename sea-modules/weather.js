@@ -1,24 +1,20 @@
-let w = document.getElementById("weather");
-let newfetch = false;
-let weather = [];
-let counter = 0;
-const p = new Proxy(weather, {
-    set: function(target, property, value, receiver) {
-        target[property] = value;
-        if(property == 0 && counter == 0 && newfetch)
-        {
-            display(target[property]);
-            startTimer();
-        }
-        return true;
-    },
-});
-
-(function() {
-    Date.prototype.addHours = function (h) {
-        return this.setHours(this.getHours() + h);
-    }
-
+define(['jquery', 'date-extension'], function(require, exports, module){
+    let w = $("#weather");
+    let newfetch = false;
+    let weather = [];
+    let counter = 0;
+    const p = new Proxy(weather, {
+        set: function(target, property, value, receiver) {
+            target[property] = value;
+            if(property == 0 && counter == 0 && newfetch)
+            {
+                display(target[property]);
+                startTimer();
+            }
+            return true;
+        },
+    });
+    
     const cities = ['Shanghai', 'Beijing', 'Bangkok', 'New York', 'London', 'Tokyo', 'Singapore', 'Sydney'];
     let c = localStorage.getItem("weather-counter");
     if(c) counter = c;
@@ -49,10 +45,8 @@ const p = new Proxy(weather, {
         function fetch(city)
         {
             const data = null;
-
             const xhr = new XMLHttpRequest();
             xhr.withCredentials = true;
-            
             xhr.addEventListener("readystatechange", function () {
                 if (this.readyState === this.DONE) {
                     let j = JSON.parse(this.responseText);
@@ -67,38 +61,35 @@ const p = new Proxy(weather, {
                     }));
                 }
             });
-            
             xhr.open("GET", "https://weatherapi-com.p.rapidapi.com/forecast.json?q=" + city + "&lang=zh-cn");
             xhr.setRequestHeader("x-rapidapi-key", "8b526891f0mshbc327a85ded2125p11fc96jsndbb828645daa");
             xhr.setRequestHeader("x-rapidapi-host", "weatherapi-com.p.rapidapi.com");
-            
             xhr.send(data);
-
         }
         cities.forEach(c=>fetch(c));
     }
-})();
-
-function display(wc)
-{
-    w.classList.add('blink-out');
-    setTimeout(function(){
-        w.innerText = wc.city + ', ' + wc.condition + ' ' + wc.temp_c + '℃';
-        w.classList.remove('blink-out');
-        w.classList.add('blink-in');
+    
+    function display(wc)
+    {
+        w.addClass('blink-out');
         setTimeout(function(){
-            w.classList.remove('blink-in');
-            counter++;
-            counter %= weather.length;
-            localStorage.setItem("weather-counter", counter);
+            w.text(wc.city + ', ' + wc.condition + ' ' + wc.temp_c + '℃');
+            w.removeClass('blink-out');
+            w.addClass('blink-in');
+            setTimeout(function(){
+                w.removeClass('blink-in');
+                counter++;
+                counter %= weather.length;
+                localStorage.setItem("weather-counter", counter);
+            }, 500);
         }, 500);
-    }, 500);
-}
-
-function startTimer()
-{
-    setInterval(function(){
-        counter %= weather.length;
-        display(weather[counter]);
-    }, 10000);
-}
+    }
+    
+    function startTimer()
+    {
+        setInterval(function(){
+            counter %= weather.length;
+            display(weather[counter]);
+        }, 10000);
+    }
+});

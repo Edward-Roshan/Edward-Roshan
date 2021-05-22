@@ -16,3 +16,5 @@ header_pages:
 - feedback.md
 show_drafts: true
 footer: Walking in the dark to serve the light.
+plugin:
+  - jekyll-minifier

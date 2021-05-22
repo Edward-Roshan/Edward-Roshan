@@ -1,4 +1,4 @@
-(function(){
+define(function(require, exports, module){
     Date.prototype.Format = function (fmt) {
         let o = {
             "M+": this.getMonth() + 1, 
@@ -14,15 +14,7 @@
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
     }
-    document.getElementById("clock").innerText = new Date().Format("yyyy-MM-dd hh:mm:ss");
-    setTimeout(function(){
-        setInterval(function(){
-            document.getElementById("clock").innerText = new Date().Format("yyyy-MM-dd hh:mm:ss");
-        }, 1000);
-    }, 500);
-    setTimeout(function(){
-        setInterval(function(){
-            document.getElementById("clock").innerText = new Date().Format("yyyy-MM-dd hh mm ss");
-        }, 1000);
-    }, 1000);
-})();
+    Date.prototype.addHours = function (h) {
+        return this.setHours(this.getHours() + h);
+    }
+});

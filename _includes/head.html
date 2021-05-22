@@ -15,8 +15,7 @@
     <link id="theme" rel="stylesheet" type="text/css" href="">
     <script type="text/javascript">
       let theme = localStorage.getItem("theme");
-      if(!theme)
-        theme = "hacker";
+      if(!theme) theme = "hacker";
       localStorage.setItem("theme", theme);
       const l = document.getElementById("theme");
       l.href = "/assets/main-" + theme + ".css";
