@@ -1,19 +1,13 @@
 let w = document.getElementById("weather");
 let weather = [];
+let counter = 0;
 const p = new Proxy(weather, {
     set: function(target, property, value, receiver) {
         target[property] = value;
-        if(weather && weather.length == 1)
+        if(property == 0 && counter == 0)
         {
-            w.classList.add('blink-out');
-            setTimeout(function(){
-                w.innerText = weather[0].city + ', ' + weather[0].condition + ' ' + weather[0].temp_c + '℃';
-                w.classList.remove('blink-out');
-                w.classList.add('blink-in');
-                setTimeout(function(){
-                    w.classList.remove('blink-in');
-                }, 500);
-            }, 500);
+            display(weather[counter]);
+            startTimer();
         }
         return true;
     },
@@ -25,6 +19,8 @@ const p = new Proxy(weather, {
     }
 
     const cities = ['Shanghai', 'Beijing', 'Bangkok', 'New York', 'London', 'Tokyo', 'Singapore', 'Sydney'];
+    let c = localStorage.getItem("weather-counter");
+    if(c) counter = c;
     let ls = localStorage.getItem("weather");
     ls = JSON.parse(ls);
     if(ls)
@@ -71,20 +67,25 @@ const p = new Proxy(weather, {
     }
 })();
 
-let counter = 1;
-
-setInterval(function(){
-    counter %= weather.length;
-    let c = weather[counter];
+function display(wc)
+{
     w.classList.add('blink-out');
     setTimeout(function(){
-        w.innerText = c.city + ', ' + c.condition + ' ' + c.temp_c + '℃';
+        w.innerText = wc.city + ', ' + wc.condition + ' ' + wc.temp_c + '℃';
         w.classList.remove('blink-out');
         w.classList.add('blink-in');
         setTimeout(function(){
             w.classList.remove('blink-in');
             counter++;
+            localStorage.setItem("weather-counter", counter);
         }, 500);
     }, 500);
-}, 10000);
+}
 
+function startTimer()
+{
+    setInterval(function(){
+        counter %= weather.length;
+        display(weather[counter]);
+    }, 10000);
+}
