@@ -16,4 +16,4 @@ layout: page
 - ⚡ Fun fact: **[something new or efficiency]**
 - ⚙️ Working strategy: **[Plan -> Design -> Execute -> Summary]**
 
-<img src="https://github-readme-stats.vercel.app/api?username=edward-roshan&show_icons=true&theme=dracula&count_private=true">
+![Edward-Roshan github stats](https://github-readme-stats.vercel.app/api?username=edward-roshan&show_icons=true&theme=dracula&count_private=true)
