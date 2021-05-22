@@ -62,7 +62,7 @@ define(['jquery', 'date-extension'], function(require, exports, module){
                 }
             });
             xhr.open("GET", "https://weatherapi-com.p.rapidapi.com/forecast.json?q=" + city + "&lang=zh-cn");
-            xhr.setRequestHeader("x-rapidapi-key", "8b526891f0mshbc327a85ded2125p11fc96jsndbb828645daa");
+            xhr.setRequestHeader("x-rapidapi-key", windows.atob("OGI1MjY4OTFmMG1zaGJjMzI3YTg1ZGVkMjEyNXAxMWZjOTZqc25kYmI4Mjg2NDVkYWE="));
             xhr.setRequestHeader("x-rapidapi-host", "weatherapi-com.p.rapidapi.com");
             xhr.send(data);
         }
