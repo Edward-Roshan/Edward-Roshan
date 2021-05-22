@@ -27,4 +27,16 @@ function changeTheme()
     }
 }
 
-changeTheme();
+function setTheme()
+{
+    let theme = localStorage.getItem("theme");
+    const r = document.getElementsByClassName("radio-button")[0];
+    if(theme == "light")
+        r.classList.add('right-left');
+    else if(theme == "dark")
+        r.classList.add('left-center');
+    else
+        r.classList.add('center-right');
+}
+
+setTheme();
