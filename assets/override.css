@@ -47,10 +47,8 @@ img {
 .radio-button {
     margin-top: 12px;
     margin-bottom: 12px;
-    width:24px;
+    width:35px;
     border: solid 1px;
     border-radius: 10px;
     padding: 0;
-    height: 12px;
-    line-height: 12px;
 }
