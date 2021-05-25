@@ -2,7 +2,7 @@ define(['jquery', 'matrix'], function(require, exports, module){
     const matrix = require('matrix');
     const fadingFunc = require('animation-extension').FadingOutAndIn;
     const l = $('<link id="hacker-theme" rel="stylesheet" type="text/css" href="/assets/main-hacker.css">');
-    const q = $('<canvas id=q></canvas>');
+    const q = $('<canvas id="q"></canvas>');
     function main()
     {
         $("#hacker-theme").remove();
