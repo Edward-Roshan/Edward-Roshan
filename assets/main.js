@@ -1,8 +1,12 @@
+const seajsTimestamp = (new Date).getTime();
 seajs.config({
     base: "/sea-modules/",
     alias: {
       "jquery": "https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"
-    }
+    },
+    map: [
+      [ /^(.*\.(?:css|js|tpl))(.*)$/i, '$1?'+seajsTimestamp ]
+    ],
 });
 seajs.use(['css/animation.css', 'css/stable-content.css', 'css/override.css']);
 seajs.use(['animation-extension', 'date-extension', 'common-extension']);
