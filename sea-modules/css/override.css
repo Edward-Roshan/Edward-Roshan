@@ -53,8 +53,8 @@ img {
     vertical-align: middle;
 }
 
-canva#q {
-    display: absolute;
-    left: 0;
-    top: 0;
+#q {
+    position: fixed;
+    opacity: 0.1;
+    z-index: -1;
 }

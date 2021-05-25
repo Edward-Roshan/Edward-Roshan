@@ -8,4 +8,5 @@ seajs.use(['css/animation.css', 'css/stable-content.css', 'css/override.css']);
 
 seajs.use(['animation-extension', 'date-extension', 'common-extension']);
 seajs.use(['clock', 'event', 'theme-picker', 'weather']);
+//seajs.use(['matrix']);
 
