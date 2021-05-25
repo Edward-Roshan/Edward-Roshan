@@ -1,8 +1,9 @@
-define(['jquery', 'date-extension'], function(require, exports, module){
-    let w = $("#weather");
+define(['jquery', 'date-extension', 'animation-extension', 'common-extension'], function(require, exports, module){
+    const fadingFunc = require('animation-extension').FadingOutAndIn;
     let newfetch = false;
     let weather = [];
     let counter = 0;
+    
     const p = new Proxy(weather, {
         set: function(target, property, value, receiver) {
             target[property] = value;
@@ -33,14 +34,14 @@ define(['jquery', 'date-extension'], function(require, exports, module){
         }
         else
         {
-            localStorage.clear("weather");
-            localStorage.clear("weather-counter");
+            localStorage.removeItem("weather");
+            localStorage.removeItem("weather-counter");
         }
     }
     else
     {
-        localStorage.clear("weather");
-        localStorage.clear("weather-counter");
+        localStorage.removeItem("weather");
+        localStorage.removeItem("weather-counter");
         newfetch = true;
         function fetch(city)
         {
@@ -62,7 +63,7 @@ define(['jquery', 'date-extension'], function(require, exports, module){
                 }
             });
             xhr.open("GET", "https://weatherapi-com.p.rapidapi.com/forecast.json?q=" + city + "&lang=zh-cn");
-            xhr.setRequestHeader("x-rapidapi-key", window.atob("OGI1MjY4OTFmMG1zaGJjMzI3YTg1ZGVkMjEyNXAxMWZjOTZqc25kYmI4Mjg2NDVkYWE="));
+            xhr.setRequestHeader("x-rapidapi-key", d("T0dJMU1qWTRPVEZtTUcxemFHSmpNekkzWVRnMVpHVmtNakV5TlhBeE1XWmpPVFpxYzI1a1ltSTRNamcyTkRWa1lXRT0="));
             xhr.setRequestHeader("x-rapidapi-host", "weatherapi-com.p.rapidapi.com");
             xhr.send(data);
         }
@@ -71,23 +72,18 @@ define(['jquery', 'date-extension'], function(require, exports, module){
     
     function display(wc)
     {
-        w.addClass('blink-out');
-        setTimeout(function(){
-            w.text(wc.city + ', ' + wc.condition + ' ' + wc.temp_c + '℃');
-            w.removeClass('blink-out');
-            w.addClass('blink-in');
-            setTimeout(function(){
-                w.removeClass('blink-in');
-                counter++;
-                counter %= weather.length;
-                localStorage.setItem("weather-counter", counter);
-            }, 500);
-        }, 500);
+        fadingFunc("#weather", () => {
+            $("#weather").text(wc.city + ', ' + wc.condition + ' ' + wc.temp_c + '℃');
+        }, () => {
+            counter++;
+            counter %= weather.length;
+            localStorage.setItem("weather-counter", counter);
+        });
     }
     
     function startTimer()
     {
-        setInterval(function(){
+        setInterval(() => {
             counter %= weather.length;
             display(weather[counter]);
         }, 10000);

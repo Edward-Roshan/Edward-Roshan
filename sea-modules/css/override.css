@@ -44,13 +44,13 @@ img {
     text-align: left;
 }
 
-.radio-button {
-    margin-top: 12px;
-    margin-bottom: 12px;
-    width:35px;
-    border: solid 1px;
-    border-radius: 10px;
+.hacker-mode {
+    width:42px;
     padding: 0;
+    font-size: 21px !important;
+    line-height: 42px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 canva#q {

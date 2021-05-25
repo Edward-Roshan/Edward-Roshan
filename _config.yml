@@ -9,6 +9,7 @@ markdown: kramdown
 plugins:
 - jekyll-feed
 style: hacker
+listen_for_clients_preferred_style: true
 header_pages:
 - home.md
 - gallery.md

@@ -4,29 +4,13 @@
   <meta name="theme-color" content="#161B22"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, maximum-scale=8.0, user-scalable=no" />
   <title>{{ page.title }}</title>
+  <link rel="apple-touch-icon" href="/favicon.ico">
   {%- seo title=false -%}
 
   {% if page.robots %}
     <meta name="robots" content="{{page.robots}}" />
   {% endif %}
-
-  {%- if site.listen_for_clients_preferred_style -%}
-    <link rel="stylesheet" type="text/css" href="{{ "/assets/main.css" | relative_url }}">
-  {%- else -%}
-    <link id="theme" rel="stylesheet" type="text/css" href="">
-    <script type="text/javascript">
-      let theme = localStorage.getItem("theme");
-      if(!theme) theme = "hacker";
-      localStorage.setItem("theme", theme);
-      const l = document.getElementById("theme");
-      l.href = "/assets/main-" + theme + ".css";
-    </script>
-  {%- endif -%}
-  <link rel="stylesheet" type="text/css" href="{{ "/assets/animation.css" | relative_url }}">
-  <link rel="stylesheet" type="text/css" href="{{ "/assets/stable-content.css" | relative_url }}">
-  <link rel="stylesheet" type="text/css" href="{{ "/assets/override.css" | relative_url }}">
-  <link rel="apple-touch-icon" href="/favicon.ico">
-  
+  <link id="theme" rel="stylesheet" type="text/css" href="{{ "/assets/main.css" | relative_url }}">
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
     {%- include google-analytics.html -%}
   {%- endif -%}
