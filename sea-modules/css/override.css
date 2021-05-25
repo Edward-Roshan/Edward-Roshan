@@ -51,6 +51,7 @@ img {
     line-height: 42px;
     text-align: center;
     vertical-align: middle;
+    cursor: pointer;
 }
 
 #q {
