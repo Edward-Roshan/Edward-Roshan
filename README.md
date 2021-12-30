@@ -7,7 +7,7 @@
 - 💬 Ask me about **[anything you want to know]**
 - 📫 How to reach me: **[zhang_nan_163@163.com]**
 - 😄 Pronouns: **[Edward Zhang, ez]**
-- ⚡ Fun fact: **[something new or efficiency]**
+- ⚡ Fun fact: **[I claim myself I like to travel. But never have intent to travel]**
 - ⚙️ Working strategy: **[Plan -> Design -> Execute -> Summary]**
 
 ![Edward-Roshan github stats](https://github-readme-stats.vercel.app/api?username=edward-roshan&show_icons=true&theme=dracula&count_private=true)
