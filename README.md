@@ -2,7 +2,8 @@
 
 - 📫 How to reach me: **zhang_nan_163@163.com**
 - ⚙️ Working strategy: **Plan ‣ Design ‣ Execute ‣ Summary**
-
+- ䷰ IT Operations Evolution: **ItOps ‣ SysOps ‣ DevOps ‣ NoOps**  ~ [Trends](https://www.bmc.com/blogs/itops-devops-and-noops-oh-my/)
+- 💎 Full-functional Tech Positions: **‣Dev ‣DevOps ‣DevSecOps ‣CloudOps ‣DataOps ‣AIOps** ~ [Trends](https://geekflare.com/what-is-sysops-dataops-devops-aiops-itops/#geekflare-toc-itops)
 ## 🪡 My artifacts: 
 
 <table>
