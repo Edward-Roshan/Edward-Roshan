@@ -18,5 +18,5 @@
 ## 🩻 Contribution:
 ![](./profile-3d-contrib/profile-night-rainbow.svg)
 
-## 😣 Stats
+## 😣 Stats:
 ![Edward-Roshan github stats](https://github-readme-stats.vercel.app/api?username=edward-roshan&show_icons=true&theme=dracula&count_private=true)
