@@ -5,8 +5,8 @@
 - ䷰ IT Operations Evolution: **ItOps ‣ SysOps ‣ DevOps ‣ NoOps**  ~ [Trends](https://www.bmc.com/blogs/itops-devops-and-noops-oh-my/)
 - 💎 Full-functional Tech Positions: ~ [Trends](https://geekflare.com/what-is-sysops-dataops-devops-aiops-itops/#geekflare-toc-itops)
   + **‣ Dev**: Support business code developing. Keep application functional and workable. Fulfill Product Manager requirements.
-  + **‣ DevOps**: Support application integrate with cloud or on-premise server. Usually take SRE work. Take care on application and infrastructure. Take system and application architecture. This is a bridge between application and infrastructure manager.
-  + **‣ DevSecOps**: Provide security solution. Keeping all of applications, systems run securely. Analyze network attack. And prepare DR solution for every security event.
+  + **‣ DevOps**: Support application integrate with cloud or on-premise server. Usually take SRE role. Take care on application and infrastructure. Take responsibility for system and application architecture. This is a bridge between application and infrastructure.
+  + **‣ DevSecOps**: Provide security solution. Keeping all of applications, systems run securely. Analyze network attack. And prepare DR solution for all of security event.
   + **‣ CloudOps**: Taking time on build instrastructure. This is infrastructure architect. Helping solve application to user layer problem.
   + **‣ DataOps**: Take responsibility to All of data. Manage and control sensitive data to other roles. Manage OLAP or OLTP.
   + **‣ AIOps**: Having experience and knowledge to use and AI tools to solve specific problem. Use AI tools to find potential income value. Provide business intelligence report to company strategy layer. Guide the decision-making layer to make decisions.
