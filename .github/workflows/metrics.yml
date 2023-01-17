@@ -26,7 +26,7 @@ jobs:
 
           # Options
           user: Edward-Roshan
-          template: repository
+          template: classic
           base: header, activity, community, repositories, metadata
           config_timezone: Asia/Shanghai
           plugin_achievements: yes
