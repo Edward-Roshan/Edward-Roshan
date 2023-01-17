@@ -45,8 +45,5 @@
 
 **\*Nintendo No: SW-1052-0183-1940**
   
-## 🩻 Contribution:
-![](./profile-3d-contrib/profile-night-rainbow.svg)
-
-## 😣 Stats:
-![Edward-Roshan github stats](https://github-readme-stats.vercel.app/api?username=edward-roshan&show_icons=true&theme=dracula&count_private=true)
+## 🩻 Metrics:
+![Metrics](https://raw.githubusercontent.com/Edward-Roshan/Edward-Roshan/main/github-metrics.svg)
