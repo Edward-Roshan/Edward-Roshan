@@ -10,7 +10,7 @@
   + **‣ CloudOps**: Taking time on build instrastructure. This is infrastructure architect. Helping solve application to user layer problem.
   + **‣ DataOps**: Take responsibility to All of data. Manage and control sensitive data to other roles. Manage OLAP or OLTP.
   + **‣ AIOps**: Having experience and knowledge to use and AI tools to solve specific problem. Use AI tools to find potential income value. Provide business intelligence report to company strategy layer. Guide the decision-making layer to make decisions.
-## 🪡 My Skills: 
+## 🪡 My Artifacts: 
 
 <table>
   <tr>
