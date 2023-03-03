@@ -53,6 +53,18 @@
 <img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/67495824" />
 </p>
 
+[Google Certified Professional Cloud Developer](https://www.credential.net/aaceffef-8916-4cda-8e82-a599073f112f)
+<p float="left">
+<img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/68810089" />
+<img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/68810089" />
+</p>
+
+[Google Certified Associate Cloud Engineer](https://www.credential.net/d5f63ebf-02f5-4dda-af0d-1e507fe9434f)
+<p float="left">
+<img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/68784526" />
+<img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/68784526" />
+</p>
+
 [AWS Certified Developer – Associate](https://www.credly.com/badges/30adff81-800c-44df-a7ae-81dea14cc3d5/public_url)
 <p float="left">
   <img height="300" src="https://images.credly.com/size/340x340/images/b9feab85-1a43-4f6c-99a5-631b88d5461b/image.png" />
