@@ -47,7 +47,7 @@
   
 ## 📜 My Certificates:
 
-[Google Certified Professional Cloud Architect](https://www.credential.net/embed/67d515a0-747d-488f-95dc-23e811d4dc67)
+[Google Certified Professional Cloud Architect](https://www.credential.net/67d515a0-747d-488f-95dc-23e811d4dc67)
 <p float="left">
 <img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/67495824" />
 <img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/67495824" />
