@@ -27,7 +27,7 @@
   </tr>
   <tr>
     <th>Hardware</th>
-    <td><img src="https://img.shields.io/badge/apple%20silicon-333333?style=for-the-badge&logo=apple&logoColor=white" /> <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Republic+of+Gamers&color=FF0029&logo=Republic+of+Gamers&logoColor=FFFFFF&label=" /> <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Nintendo+Switch&color=E60012&logo=Nintendo+Switch&logoColor=FFFFFF&label=" /></td>
+    <td><img src="https://img.shields.io/badge/apple%20silicon-333333?style=for-the-badge&logo=apple&logoColor=white" /> <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Republic+of+Gamers&color=FF0029&logo=Republic+of+Gamers&logoColor=FFFFFF&label=" /></td>
   </tr>
   <tr>
     <th>Cloud</th>
@@ -42,8 +42,6 @@
     <td><img src="https://img.shields.io/static/v1?style=for-the-badge&message=pnpm&color=222222&logo=pnpm&logoColor=F69220&label=" /> <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Yarn&color=2C8EBB&logo=Yarn&logoColor=FFFFFF&label=" /> <img src="https://img.shields.io/static/v1?style=for-the-badge&message=NuGet&color=004880&logo=NuGet&logoColor=FFFFFF&label=" /> <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Homebrew&color=222222&logo=Homebrew&logoColor=FBB040&label=" /></td>
   </tr>
 </table>
-
-**\*Nintendo No: SW-1052-0183-1940**
   
 ## 📜 My Certificates:
 
