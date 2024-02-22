@@ -1,3 +1,10 @@
+## Welfare:
+
+Kindly retrieved STRK from airdrop. all the gifts to the diligent github developer. Thank you for all of people who working for open-source software. All the best for you and me.
+
+Get 111.11 STRK coin from Airdrop. READ more from: https://provisions.starknet.io/
+
+
 ## 👋 Hi there:
 
 - 📫 How to reach me: **zhang_nan_163@163.com**
