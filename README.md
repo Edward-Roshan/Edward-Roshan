@@ -4,6 +4,7 @@ Kindly retrieved STRK from airdrop. all the gifts to the diligent github develop
 
 Get 111.11 STRK coin from Airdrop. READ more from: https://provisions.starknet.io/
 
+<img height="300" src="https://github.com/Edward-Roshan/Edward-Roshan/blob/2e8c5bccf8bddc19ee3340dcb7e7cea05cff609d/misc/STRK%20airdrop%20screenshots.png?raw=true" />
 
 ## 👋 Hi there:
 
