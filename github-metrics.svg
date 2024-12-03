@@ -224,7 +224,7 @@
                     <rect mask="url(#languages-bar)" x="370.3072829660446" y="0" width="59.404098293505626" height="8" fill="#3178c6"/>
                     <rect mask="url(#languages-bar)" x="429.71138125955025" y="0" width="14.98046311500226" height="8" fill="#f1e05a"/>
                     <rect mask="url(#languages-bar)" x="444.69184437455255" y="0" width="8.990244024064028" height="8" fill="#e34c26"/>
-                    <rect mask="url(#languages-bar)" x="453.68208839861654" y="0" width="3.729140768866362" height="8" fill="#563d7c"/>
+                    <rect mask="url(#languages-bar)" x="453.68208839861654" y="0" width="3.729140768866362" height="8" fill="#663399"/>
                     <rect mask="url(#languages-bar)" x="457.4112291674829" y="0" width="1.6450164024348979" height="8" fill="#384d54"/>
                     <rect mask="url(#languages-bar)" x="459.0562455699178" y="0" width="0.9437544300821725" height="8" fill="#C1F12E"/>
                 </svg>
@@ -261,7 +261,7 @@
                     </div>
                     <div class="field center no-wrap language">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-                            <path fill="#563d7c" fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"/>
+                            <path fill="#663399" fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"/>
                         </svg>
                         CSS
                     </div>
@@ -1540,14 +1540,14 @@
                 <div class="row">
                     <section class="largeable-column-fields">
                         <div class="field" style="padding-left: 31px">
-                            <b style="color: #9D05DA">Your fortune: Very Bad Luck</b>
+                            <b style="color: #FD4D32">Your fortune: Excellent Luck</b>
                         </div>
                     </section>
                 </div>
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 3 Dec 2024, 20:49:05 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 3 Dec 2024, 21:33:23 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
