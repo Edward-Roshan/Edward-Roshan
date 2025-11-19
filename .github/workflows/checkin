@@ -1,0 +1,67 @@
+name: run
+
+on:
+  workflow_dispatch:
+  push:
+  schedule:
+    - cron: 9 0 * * *
+
+jobs:
+  checkin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Glados Checkin
+        env:
+          GLADOS: ${{ secrets.GLADOS }}  # 从 secrets 中获取 cookie
+        run: |
+          node -e "
+            const glados = async () => {
+              if (!process.env.GLADOS) {
+                throw new Error('GLADOS environment variable is not set');
+              }
+              const cookies = String(process.env.GLADOS).split('\n').filter(c => c);
+              if (cookies.length === 0) {
+                throw new Error('No valid cookies found');
+              }
+              
+              for (const cookie of cookies) {
+                try {
+                  const commonHeaders = {
+                    'cookie': cookie,
+                    'referer': 'https://glados.rocks/console/checkin',
+                    'user-agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)',
+                  };
+                  
+                  const checkinResponse = await fetch('https://glados.rocks/api/user/checkin', {
+                    method: 'POST',
+                    headers: { ...commonHeaders, 'content-type': 'application/json' },
+                    body: JSON.stringify({ token: 'glados.one' }),
+                  });
+                  const checkinData = await checkinResponse.json();
+                  if (checkinData?.code) {
+                    throw new Error(`Checkin failed: ${checkinData?.message || 'Unknown error'}`);
+                  }
+                  
+                  const statusResponse = await fetch('https://glados.rocks/api/user/status', {
+                    method: 'GET',
+                    headers: commonHeaders,
+                  });
+                  const statusData = await statusResponse.json();
+                  if (statusData?.code) {
+                    throw new Error(`Status check failed: ${statusData?.message || 'Unknown error'}`);
+                  }
+                  
+                  console.log(`Checkin successful for cookie (partial): ${cookie.substring(0, 20)}...`);
+                  console.log(`Message: ${checkinData?.message}`);
+                  console.log(`Left Days: ${Number(statusData?.data?.leftDays)}`);
+                } catch (error) {
+                  throw new Error(`Error processing cookie: ${error.message}`);
+                }
+              }
+            };
+
+            glados().catch(error => {
+              console.error('Fatal error:', error.message);
+              process.exit(1);
+            });
+          "
