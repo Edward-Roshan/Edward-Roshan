@@ -42,37 +42,6 @@
     <td><img src="https://img.shields.io/static/v1?style=for-the-badge&message=pnpm&color=222222&logo=pnpm&logoColor=F69220&label=" /> <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Yarn&color=2C8EBB&logo=Yarn&logoColor=FFFFFF&label=" /> <img src="https://img.shields.io/static/v1?style=for-the-badge&message=NuGet&color=004880&logo=NuGet&logoColor=FFFFFF&label=" /> <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Homebrew&color=222222&logo=Homebrew&logoColor=FBB040&label=" /></td>
   </tr>
 </table>
-  
-## 📜 My Certificates:
-
-Accredible: [Google Certified Professional Cloud Architect](https://www.credential.net/67d515a0-747d-488f-95dc-23e811d4dc67)
-<br/>
-Credly: [Google Certified Professional Cloud Architect](https://www.credly.com/badges/c82ea50d-31e9-4dec-ad86-db3f4d579685)
-<p float="left">
-<img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/67495824" />
-<img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/67495824" />
-</p>
-
-Accredible: [Google Certified Professional Cloud Developer](https://www.credential.net/aaceffef-8916-4cda-8e82-a599073f112f)
-<br/>
-Credly: [Google Certified Professional Cloud Developer](https://www.credly.com/badges/3bfc97eb-3348-470e-ba03-63c7ee4537aa)
-<p float="left">
-<img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/68810089" />
-<img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/68810089" />
-</p>
-
-Accredible: [Google Certified Associate Cloud Engineer](https://www.credential.net/d5f63ebf-02f5-4dda-af0d-1e507fe9434f)
-<br/>
-Credly: [Google Certified Associate Cloud Engineer](https://www.credly.com/badges/392dba0d-e592-4c1e-90a9-3a3bcf9df690)
-<p float="left">
-<img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/68784526" />
-<img height="300" src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/68784526" />
-</p>
-
-[AWS Certified Developer – Associate](https://www.credly.com/badges/30adff81-800c-44df-a7ae-81dea14cc3d5/public_url)
-<p float="left">
-  <img height="300" src="https://images.credly.com/size/340x340/images/b9feab85-1a43-4f6c-99a5-631b88d5461b/image.png" />
-</p>
 
 ## 🩻 Metrics:
 ![Metrics](https://raw.githubusercontent.com/Edward-Roshan/Edward-Roshan/main/github-metrics.svg)
