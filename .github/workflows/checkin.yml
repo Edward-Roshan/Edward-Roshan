@@ -34,7 +34,7 @@ jobs:
                   const checkinResponse = await fetch("https://glados.cloud/api/user/checkin", {
                     method: "POST",
                     headers: { ...commonHeaders, "content-type": "application/json" },
-                    body: JSON.stringify({ token: "glados.one" }),
+                    body: JSON.stringify({ token: "glados.cloud" }),
                   });
                   const checkinData = await checkinResponse.json();
                   if (checkinData?.code) {
