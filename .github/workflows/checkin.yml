@@ -27,11 +27,11 @@ jobs:
                 try {
                   const commonHeaders = {
                     "cookie": cookie,
-                    "referer": "https://glados.rocks/console/checkin",
+                    "referer": "https://glados.cloud/console/checkin",
                     "user-agent": "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)",
                   };
                   
-                  const checkinResponse = await fetch("https://glados.rocks/api/user/checkin", {
+                  const checkinResponse = await fetch("https://glados.cloud/api/user/checkin", {
                     method: "POST",
                     headers: { ...commonHeaders, "content-type": "application/json" },
                     body: JSON.stringify({ token: "glados.one" }),
@@ -41,7 +41,7 @@ jobs:
                     throw new Error(`Checkin failed: ${checkinData?.message || "Unknown error"}`);
                   }
                   
-                  const statusResponse = await fetch("https://glados.rocks/api/user/status", {
+                  const statusResponse = await fetch("https://glados.cloud/api/user/status", {
                     method: "GET",
                     headers: commonHeaders,
                   });
