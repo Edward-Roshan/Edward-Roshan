@@ -2,16 +2,10 @@
 
 - 📫 How to reach me: **zhang_nan_163@163.com**
 - ⚙️ Working strategy: **Plan ‣ Design ‣ Execute ‣ Summary**
-- ䷰ IT Operations Evolution: **ItOps ‣ SysOps ‣ DevOps ‣ NoOps**  ~ [Trends](https://www.bmc.com/blogs/itops-devops-and-noops-oh-my/)
-- 💎 Full-functional Tech Positions: ~ [Trends](https://geekflare.com/what-is-sysops-dataops-devops-aiops-itops/#geekflare-toc-itops)
-  + **‣ Dev**: Support business code developing. Keep application functional and workable. Fulfill Product Manager requirements.
-  + **‣ DevOps**: Support application integrate with cloud or on-premise server. Usually take SRE role. Take care on application and infrastructure. Take responsibility for system and application architecture. This is a bridge between application and infrastructure.
-  + **‣ DevSecOps**: Provide security solution. Keeping all of applications, systems run securely. Analyze network attack. And prepare DR solution for all of security event.
-  + **‣ CloudOps**: Taking time on build instrastructure. This is infrastructure architect. Helping solve application to user layer problem.
-  + **‣ DataOps**: Take responsibility to All of data. Manage and control sensitive data to other roles. Manage OLAP or OLTP.
-  + **‣ AIOps**: Having experience and knowledge to use and AI tools to solve specific problem. Use AI tools to find potential income value. Provide business intelligence report to company strategy layer. Guide the decision-making layer to make decisions.
-  + **‣ FinOps**: FinOps is an operational framework and cultural practice which maximizes the business value of cloud and technology, enables timely data-driven decision making, and creates financial accountability through collaboration between engineering, finance, and business teams. ~ [Trends](https://www.finops.org/introduction/what-is-finops/)
+- ䷰ IT Operations Evolution: **ItOps ‣ SysOps ‣ DevOps ‣ NoOps ‣ AiOps**  ~ [Trends](https://www.bmc.com/blogs/itops-devops-and-noops-oh-my/)
+- 💎 **All in AI**
 - 🤖 **Everything has been changed! AI can do everything:** https://github.com/anyone-developer/ai-made-hotel-booking
+- 🤖 **AI Agents create AI Agent:** https://github.com/anyone-developer/agent-created-by-agents
 
 ## 🪡 My Artifacts: 
 
