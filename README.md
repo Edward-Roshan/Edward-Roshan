@@ -3,7 +3,8 @@
 - 📫 How to reach me: **zhang_nan_163@163.com**
 - ⚙️ Working strategy: **Plan ‣ Design ‣ Execute ‣ Summary**
 - ䷰ IT Operations Evolution: **ItOps ‣ SysOps ‣ DevOps ‣ NoOps ‣ AiOps**  ~ [Trends](https://www.bmc.com/blogs/itops-devops-and-noops-oh-my/)
-- 💎 **All in AI**
+- 🏍️ **Proudly Announce:** [WSBK China Fans site](https://wsbk.any-ape.com/)
+- 💎 **AI Harness Orchestraction Platform:** Still [WIP](https://www.any-ape.com/)
 - 🤖 **Everything has been changed! AI can do everything:** https://github.com/anyone-developer/ai-made-hotel-booking
 - 🤖 **AI Agents create AI Agent:** https://github.com/anyone-developer/agent-created-by-agents
 
