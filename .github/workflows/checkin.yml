@@ -1,5 +1,4 @@
 name: checkin
-
 on:
   schedule:
     - cron: '7 0 * * *'
@@ -9,58 +8,124 @@ jobs:
   checkin:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Run Glados Checkin
         env:
           GLADOS: ${{ secrets.GLADOS }}
+          GLADOS_PROOF_CONST: ${{ secrets.GLADOS_PROOF_CONST }}
         run: |
           node -e '
-            const glados = async () => {
-              if (!process.env.GLADOS) {
-                throw new Error("GLADOS environment variable is not set");
-              }
-              const cookies = String(process.env.GLADOS).split("\n").filter(c => c);
-              if (cookies.length === 0) {
-                throw new Error("No valid cookies found");
-              }
-              
-              for (const cookie of cookies) {
-                try {
-                  const commonHeaders = {
-                    "cookie": cookie,
-                    "referer": "https://glados.cloud/console/checkin",
-                    "user-agent": "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)",
-                  };
-                  
-                  const checkinResponse = await fetch("https://glados.cloud/api/user/checkin", {
-                    method: "POST",
-                    headers: { ...commonHeaders, "content-type": "application/json" },
-                    body: JSON.stringify({ token: "glados.cloud" }),
-                  });
-                  const checkinData = await checkinResponse.json();
-                  if (checkinData?.code) {
-                    throw new Error(`Checkin failed: ${checkinData?.message || "Unknown error"}`);
-                  }
-                  
-                  const statusResponse = await fetch("https://glados.cloud/api/user/status", {
-                    method: "GET",
-                    headers: commonHeaders,
-                  });
-                  const statusData = await statusResponse.json();
-                  if (statusData?.code) {
-                    throw new Error(`Status check failed: ${statusData?.message || "Unknown error"}`);
-                  }
-                  
-                  console.log(`Checkin successful for cookie (partial): ${cookie.substring(0, 20)}...`);
-                  console.log(`Message: ${checkinData?.message}`);
-                  console.log(`Left Days: ${Number(statusData?.data?.leftDays)}`);
-                } catch (error) {
-                  throw new Error(`Error processing cookie: ${error.message}`);
+          const crypto = require("crypto");
+
+          const FALLBACK_CONST = "glados-observer-v1";
+          const BASE = "https://glados.cloud/api";
+          const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36";
+
+          function sha256hex(s) {
+            return crypto.createHash("sha256").update(s).digest("hex");
+          }
+
+          // 从 GLaDOS 当前前端 JS 动态提取 checkinProof 用的常量；失败则用兜底值，
+          // 也可用 secret GLADOS_PROOF_CONST 手动覆盖。
+          async function getObserverConst() {
+            const override = process.env.GLADOS_PROOF_CONST;
+            if (override) { console.log("[const] 使用 secret 覆盖:", override); return override; }
+            try {
+              const html = await (await fetch("https://glados.cloud/console/checkin")).text();
+              const paths = [...new Set([...html.matchAll(/\/static\/js\/[^\x27]+\.js/g)].map(m => m[0]))];
+              const sources = await Promise.all(paths.map(p =>
+                fetch("https://glados.cloud" + p).then(r => r.text()).catch(() => "")
+              ));
+              for (const js of sources) {
+                const idx = js.indexOf("checkinProof");
+                if (idx < 0) continue;
+                const near = js.slice(idx, idx + 600);
+                const m = near.match(/\[(\d+(?:,\d+)*)\]\.map\(function\(\w+\)\{return String\.fromCharCode\(\w+\)\}\)\.join\(""\)/);
+                if (m) {
+                  try {
+                    const arr = JSON.parse("[" + m[1] + "]");
+                    const s = arr.map(c => String.fromCharCode(c)).join("");
+                    if (s) { console.log("[const] 从官网前端动态提取:", s); return s; }
+                  } catch (e) {}
                 }
               }
+            } catch (e) {
+              console.log("[const] 动态提取失败，回退:", e.message);
+            }
+            console.log("[const] 使用兜底:", FALLBACK_CONST);
+            return FALLBACK_CONST;
+          }
+
+          function makeProof(nonce, c) {
+            return sha256hex(nonce + "." + c);
+          }
+
+          async function checkinOne(cookie, constStr) {
+            const headers = {
+              cookie: cookie,
+              referer: "https://glados.cloud/console/checkin",
+              "user-agent": UA,
             };
 
-            glados().catch(error => {
-              console.error("Fatal error:", error.message);
-              process.exit(1);
+            // 1) 拿 challenge nonce（带 TTL，需尽快消费）
+            const chRes = await fetch(BASE + "/user/checkin/challenge", { headers: headers });
+            const chData = await chRes.json();
+            if (chData && chData.code) throw new Error("challenge 失败: " + (chData.message || "unknown") + " (code " + chData.code + ")");
+            const nonce = chData && chData.nonce;
+            if (!nonce) throw new Error("challenge 未返回 nonce");
+
+            // 2) 立即算 proof（在 TTL 内）
+            const proof = makeProof(nonce, constStr);
+
+            // 3) 签到
+            const ckRes = await fetch(BASE + "/user/checkin", {
+              method: "POST",
+              headers: Object.assign({}, headers, { "content-type": "application/json" }),
+              body: JSON.stringify({ token: "glados.cloud", nonce: nonce, proof: proof }),
             });
+            const ckData = await ckRes.json();
+            if (ckData && ckData.code) throw new Error("checkin 失败: " + (ckData.message || "unknown") + " (code " + ckData.code + ")");
+
+            // 4) 查剩余天数
+            const stRes = await fetch(BASE + "/user/status", { headers: headers });
+            const stData = await stRes.json();
+            const leftDays = stData && stData.data ? Number(stData.data.leftDays) : null;
+
+            return {
+              message: ckData && ckData.message,
+              points: ckData && ckData.points,
+              streak: ckData && ckData.streak,
+              leftDays: leftDays,
+            };
+          }
+
+          (async () => {
+            const constStr = await getObserverConst();
+            const cookies = String(process.env.GLADOS || "").split("\n").map(s => s.trim()).filter(Boolean);
+            if (cookies.length === 0) throw new Error("GLADOS 环境变量未设置或为空");
+
+            const results = [];
+            for (const cookie of cookies) {
+              const masked = cookie.substring(0, 20) + "...";
+              try {
+                const r = await checkinOne(cookie, constStr);
+                results.push(Object.assign({ cookie: masked, ok: true }, r));
+                console.log("[OK] " + masked + " -> " + JSON.stringify(r));
+              } catch (e) {
+                results.push({ cookie: masked, ok: false, error: e.message });
+                console.log("[FAIL] " + masked + " -> " + e.message);
+              }
+            }
+
+            console.log("==== 汇总 ====");
+            console.log(JSON.stringify(results, null, 2));
+            if (results.some(r => !r.ok)) process.exit(1);
+          })().catch(e => {
+            console.error("Fatal error:", e.message);
+            process.exit(1);
+          });
           '
