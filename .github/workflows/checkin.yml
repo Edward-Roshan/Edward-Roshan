@@ -13,118 +13,89 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install Playwright Chromium
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm i playwright >/dev/null 2>&1
+          npx playwright install --with-deps chromium
+
       - name: Run Glados Checkin
         env:
           GLADOS: ${{ secrets.GLADOS }}
-          GLADOS_PROOF_CONST: ${{ secrets.GLADOS_PROOF_CONST }}
         run: |
           node -e '
-          const crypto = require("crypto");
+          const { chromium } = require("playwright");
+          const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 
-          const FALLBACK_CONST = "glados-observer-v1";
-          const BASE = "https://glados.cloud/api";
-          const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36";
-
-          function sha256hex(s) {
-            return crypto.createHash("sha256").update(s).digest("hex");
-          }
-
-          // 从 GLaDOS 当前前端 JS 动态提取 checkinProof 用的常量；失败则用兜底值，
-          // 也可用 secret GLADOS_PROOF_CONST 手动覆盖。
-          async function getObserverConst() {
-            const override = process.env.GLADOS_PROOF_CONST;
-            if (override) { console.log("[const] 使用 secret 覆盖:", override); return override; }
-            try {
-              const html = await (await fetch("https://glados.cloud/console/checkin")).text();
-              const paths = [...new Set([...html.matchAll(/\/static\/js\/[^\x27]+\.js/g)].map(m => m[0]))];
-              const sources = await Promise.all(paths.map(p =>
-                fetch("https://glados.cloud" + p).then(r => r.text()).catch(() => "")
-              ));
-              for (const js of sources) {
-                const idx = js.indexOf("checkinProof");
-                if (idx < 0) continue;
-                const near = js.slice(idx, idx + 600);
-                const m = near.match(/\[(\d+(?:,\d+)*)\]\.map\(function\(\w+\)\{return String\.fromCharCode\(\w+\)\}\)\.join\(""\)/);
-                if (m) {
-                  try {
-                    const arr = JSON.parse("[" + m[1] + "]");
-                    const s = arr.map(c => String.fromCharCode(c)).join("");
-                    if (s) { console.log("[const] 从官网前端动态提取:", s); return s; }
-                  } catch (e) {}
-                }
-              }
-            } catch (e) {
-              console.log("[const] 动态提取失败，回退:", e.message);
-            }
-            console.log("[const] 使用兜底:", FALLBACK_CONST);
-            return FALLBACK_CONST;
-          }
-
-          function makeProof(nonce, c) {
-            return sha256hex(nonce + "." + c);
-          }
-
-          async function checkinOne(cookie, constStr) {
-            const headers = {
-              cookie: cookie,
-              referer: "https://glados.cloud/console/checkin",
-              "user-agent": UA,
-            };
-
-            // 1) 拿 challenge nonce（带 TTL，需尽快消费）
-            const chRes = await fetch(BASE + "/user/checkin/challenge", { headers: headers });
-            const chData = await chRes.json();
-            if (chData && chData.code) throw new Error("challenge 失败: " + (chData.message || "unknown") + " (code " + chData.code + ")");
-            const nonce = chData && chData.nonce;
-            if (!nonce) throw new Error("challenge 未返回 nonce");
-
-            // 2) 立即算 proof（在 TTL 内）
-            const proof = makeProof(nonce, constStr);
-
-            // 3) 签到
-            const ckRes = await fetch(BASE + "/user/checkin", {
-              method: "POST",
-              headers: Object.assign({}, headers, { "content-type": "application/json" }),
-              body: JSON.stringify({ token: "glados.cloud", nonce: nonce, proof: proof }),
+          function parseCookies(ckStr) {
+            return ckStr.split(";").map(function (p) { return p.trim(); }).filter(Boolean).map(function (p) {
+              const i = p.indexOf("=");
+              return { name: p.substring(0, i).trim(), value: p.substring(i + 1).trim(), domain: "glados.cloud", path: "/" };
             });
-            const ckData = await ckRes.json();
-            if (ckData && ckData.code) throw new Error("checkin 失败: " + (ckData.message || "unknown") + " (code " + ckData.code + ")");
-
-            // 4) 查剩余天数
-            const stRes = await fetch(BASE + "/user/status", { headers: headers });
-            const stData = await stRes.json();
-            const leftDays = stData && stData.data ? Number(stData.data.leftDays) : null;
-
-            return {
-              message: ckData && ckData.message,
-              points: ckData && ckData.points,
-              streak: ckData && ckData.streak,
-              leftDays: leftDays,
-            };
           }
 
           (async () => {
-            const constStr = await getObserverConst();
-            const cookies = String(process.env.GLADOS || "").split("\n").map(s => s.trim()).filter(Boolean);
-            if (cookies.length === 0) throw new Error("GLADOS 环境变量未设置或为空");
+            const cookieLines = String(process.env.GLADOS || "").split("\n").map(function (s) { return s.trim(); }).filter(Boolean);
+            if (cookieLines.length === 0) throw new Error("GLADOS 环境变量未设置或为空");
 
             const results = [];
-            for (const cookie of cookies) {
-              const masked = cookie.substring(0, 20) + "...";
+            for (const ck of cookieLines) {
+              const masked = ck.substring(0, 20) + "...";
+              let browser;
               try {
-                const r = await checkinOne(cookie, constStr);
-                results.push(Object.assign({ cookie: masked, ok: true }, r));
-                console.log("[OK] " + masked + " -> " + JSON.stringify(r));
+                browser = await chromium.launch({
+                  headless: true,
+                  args: ["--disable-blink-features=AutomationControlled", "--no-sandbox"],
+                });
+                const context = await browser.newContext({ userAgent: UA, viewport: { width: 1280, height: 800 } });
+                await context.addCookies(parseCookies(ck));
+                const page = await context.newPage();
+                await page.addInitScript(function () {
+                  try { Object.defineProperty(navigator, "webdriver", { get: function () { return false; } }); } catch (e) {}
+                });
+
+                let apiResult = null;
+                page.on("response", async function (resp) {
+                  const u = resp.url();
+                  if (u.includes("/api/user/checkin") && !u.includes("challenge")) {
+                    try { apiResult = await resp.json(); } catch (e) {}
+                  }
+                });
+
+                await page.goto("https://glados.cloud/console/checkin", { waitUntil: "domcontentloaded", timeout: 30000 });
+                await page.waitForSelector("button", { timeout: 20000 });
+
+                const clicked = await page.evaluate(function () {
+                  const btns = Array.from(document.querySelectorAll("button"));
+                  let target = btns.find(function (b) { return /check\s*in|签到|sign\s*in|checkin/i.test((b.innerText || "").toLowerCase()); });
+                  if (!target) target = btns.find(function (b) { return (b.innerText || "").trim().length > 0; });
+                  if (target) { target.click(); return true; }
+                  return false;
+                });
+                if (!clicked) throw new Error("未在页面找到签到按钮");
+
+                for (let i = 0; i < 40 && !apiResult; i++) await page.waitForTimeout(250);
+                if (!apiResult) throw new Error("未捕获到 /api/user/checkin 响应");
+                if (apiResult.code) throw new Error("checkin 失败: " + (apiResult.message || "unknown") + " (code " + apiResult.code + ")");
+
+                const leftDays = await page.evaluate(async function () {
+                  try { const r = await fetch("/api/user/status"); const j = await r.json(); return j && j.data ? Number(j.data.leftDays) : null; } catch (e) { return null; }
+                });
+
+                results.push({ cookie: masked, ok: true, message: apiResult.message, points: apiResult.points, streak: apiResult.streak, leftDays: leftDays });
+                console.log("[OK] " + masked + " -> " + JSON.stringify({ message: apiResult.message, points: apiResult.points, leftDays: leftDays }));
               } catch (e) {
                 results.push({ cookie: masked, ok: false, error: e.message });
                 console.log("[FAIL] " + masked + " -> " + e.message);
+              } finally {
+                if (browser) await browser.close();
               }
             }
 
             console.log("==== 汇总 ====");
             console.log(JSON.stringify(results, null, 2));
-            if (results.some(r => !r.ok)) process.exit(1);
-          })().catch(e => {
+            if (results.some(function (r) { return !r.ok; })) process.exit(1);
+          })().catch(function (e) {
             console.error("Fatal error:", e.message);
             process.exit(1);
           });
